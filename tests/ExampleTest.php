@@ -31,14 +31,14 @@ class ExampleTest extends TestCase
         $this->assertSame(113429216, $response);
     }
 
-    public function test_get_player_function()
-    {
-        $openDota = new LaravelOpendota();
+    // public function test_get_player_function()
+    // {
+    //     $openDota = new LaravelOpendota();
 
-        $playerID = 113429216;
+    //     $playerID = 113429216;
 
-        $player = $openDota->getPlayer($playerID);
+    //     $player = $openDota->getPlayer($playerID);
 
-        dd($player->json());
-    }
+    //     $this->assertSame(113429216, $player);
+    // }
 }
