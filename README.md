@@ -1,11 +1,11 @@
-# Very short description of the package
+# Laravel-OpenDota
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/xitox97/laravel-opendota.svg?style=flat-square)](https://packagist.org/packages/xitox97/laravel-opendota)
-[![Build Status](https://img.shields.io/travis/xitox97/laravel-opendota/master.svg?style=flat-square)](https://travis-ci.org/xitox97/laravel-opendota)
-[![Quality Score](https://img.shields.io/scrutinizer/g/xitox97/laravel-opendota.svg?style=flat-square)](https://scrutinizer-ci.com/g/xitox97/laravel-opendota)
 [![Total Downloads](https://img.shields.io/packagist/dt/xitox97/laravel-opendota.svg?style=flat-square)](https://packagist.org/packages/xitox97/laravel-opendota)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+Unofficial Laravel PHP Facade/Wrapper for the OpenDota API
+
+`(This package is still under development)`
 
 ## Installation
 
@@ -16,28 +16,20 @@ composer require xitox97/laravel-opendota
 ```
 
 ## Usage
+Every function are return an instance of `Illuminate\Http\Client\Response`, Therefore you can use variety of method provided by [Laravel HTTP Client](https://laravel.com/docs/master/http-client)
 
+*Get Player Info*
 ``` php
-// Usage description here
+$player = Opendota::getPlayer($playerID);
+$player->json();
+$response->body();
 ```
 
-### Testing
-
-``` bash
-composer test
-```
 
 ### Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-## Contributing
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-### Security
-
-If you discover any security related issues, please email farhan.abdhadi@gmail.com instead of using the issue tracker.
 
 ## Credits
 
@@ -47,7 +39,3 @@ If you discover any security related issues, please email farhan.abdhadi@gmail.c
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
