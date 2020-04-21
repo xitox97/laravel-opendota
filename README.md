@@ -18,11 +18,37 @@ composer require xitox97/laravel-opendota
 ## Usage
 Every function are return an instance of `Illuminate\Http\Client\Response`, Therefore you can use variety of method provided by [Laravel HTTP Client](https://laravel.com/docs/master/http-client)
 
-*Get Player Info*
+### Get player info
 ``` php
-$player = Opendota::getPlayer($playerID);
+$player = Opendota::getPlayer($player_id);
 $player->json();
-$response->body();
+$player->body();
+etc...
+```
+
+### Get match details
+``` php
+$player = Opendota::getMatch($match_id);
+```
+
+### Get players ordered by rank/medal tier
+``` php
+$player = Opendota::getPlayersByRank();
+```
+
+### Get list of pro players
+``` php
+$player = Opendota::getProPlayers();
+```
+
+### Get list of pro matches
+``` php
+$player = Opendota::proMatches();
+```
+
+### Get list of randomly sampled public matches
+``` php
+$player = Opendota::publicMatches();
 ```
 
 
