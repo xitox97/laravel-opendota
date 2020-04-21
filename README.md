@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/xitox97/laravel-opendota.svg?style=flat-square)](https://packagist.org/packages/xitox97/laravel-opendota)
 [![Total Downloads](https://img.shields.io/packagist/dt/xitox97/laravel-opendota.svg?style=flat-square)](https://packagist.org/packages/xitox97/laravel-opendota)
 
-Unofficial Laravel PHP Facade/Wrapper for the OpenDota API
+Unofficial Laravel 7 PHP Facade/Wrapper for the OpenDota API
 
 `(This package is still under development)`
 
