@@ -1,0 +1,53 @@
+{
+    "name": "xitox97/laravel-opendota",
+    "description": "Laravel PHP Facade/Wrapper for the OpenDota API",
+    "keywords": [
+        "xitox97",
+        "laravel-opendota"
+    ],
+    "homepage": "https://github.com/xitox97/laravel-opendota",
+    "license": "MIT",
+    "type": "library",
+    "authors": [{
+        "name": "Muhammad Farhan Abdul Hadi",
+        "email": "farhan.abdhadi@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "~6.0",
+        "illuminate/support": "^7.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xitox97\\LaravelOpendota\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Xitox97\\LaravelOpendota\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Xitox97\\LaravelOpendota\\LaravelOpendotaServiceProvider"
+            ],
+            "aliases": {
+                "Opendota": "Xitox97\\LaravelOpendota\\LaravelOpendotaFacade"
+            }
+        }
+    }
+}
