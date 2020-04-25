@@ -1,10 +1,10 @@
 # Laravel-OpenDota
-
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/xitox97/laravel-opendota.svg?style=flat-square)](https://packagist.org/packages/xitox97/laravel-opendota)
 [![Total Downloads](https://img.shields.io/packagist/dt/xitox97/laravel-opendota.svg?style=flat-square)](https://packagist.org/packages/xitox97/laravel-opendota)
 
 Unofficial Laravel 7 PHP Facade/Wrapper for the OpenDota API
 
+![laravel-Opendota](https://user-images.githubusercontent.com/15958161/80275485-18007400-8714-11ea-8321-233bd258c6c9.png)
 ## Support
   - Laravel 7+
   - OpenDota API (v18.0.0)
