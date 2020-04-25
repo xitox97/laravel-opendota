@@ -19,29 +19,30 @@ class LaravelOpendotaServiceProvider extends ServiceProvider
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
-        // if ($this->app->runningInConsole()) {
-        //     $this->publishes([
-        //         __DIR__ . '/../config/config.php' => config_path('laravel-opendota.php'),
-        //     ], 'config');
+        if ($this->app->runningInConsole()) {
 
-        //     // Publishing the views.
-        //     /*$this->publishes([
-        //         __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-opendota'),
-        //     ], 'views');*/
+            $this->publishes([
+                __DIR__ . '/../config/opendota.php' => config_path('laravel-opendota.php'),
+            ], 'config');
 
-        //     // Publishing assets.
-        //     /*$this->publishes([
-        //         __DIR__.'/../resources/assets' => public_path('vendor/laravel-opendota'),
-        //     ], 'assets');*/
+            // Publishing the views.
+            /*$this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-opendota'),
+            ], 'views');*/
 
-        //     // Publishing the translation files.
-        //     /*$this->publishes([
-        //         __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-opendota'),
-        //     ], 'lang');*/
+            // Publishing assets.
+            /*$this->publishes([
+                __DIR__.'/../resources/assets' => public_path('vendor/laravel-opendota'),
+            ], 'assets');*/
 
-        //     // Registering package commands.
-        //     // $this->commands([]);
-        // }
+            // Publishing the translation files.
+            /*$this->publishes([
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/laravel-opendota'),
+            ], 'lang');*/
+
+            // Registering package commands.
+            // $this->commands([]);
+        }
     }
 
     /**
@@ -50,7 +51,7 @@ class LaravelOpendotaServiceProvider extends ServiceProvider
     public function register()
     {
         // Automatically apply the package configuration
-        //$this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'laravel-opendota');
+        $this->mergeConfigFrom(__DIR__ . '/../config/opendota.php', 'laravel-opendota');
 
         // Register the main class to use with the facade
         $this->app->singleton('opendota', function () {

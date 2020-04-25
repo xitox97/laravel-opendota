@@ -11,6 +11,7 @@ class LaravelOpendota
     public function __construct()
     {
         $this->api_url = 'https://api.opendota.com/api/';
+        $this->api_key = ['api_key' => config('opendota.api_key')];
     }
 
     /**
@@ -19,7 +20,7 @@ class LaravelOpendota
      */
     public function getPlayer($player_id)
     {
-        return Http::get($this->api_url . 'players/' . $player_id);
+        return Http::get($this->api_url . 'players/' . $player_id , $this->api_key);
     }
 
     /**
@@ -29,7 +30,7 @@ class LaravelOpendota
      */
     public function getPlayerWL($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/wl', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/wl', array_merge($this->api_key, $params));
     }
 
     /**
@@ -38,7 +39,7 @@ class LaravelOpendota
      */
     public function getPlayerRecentMatches($player_id)
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/recentMatches');
+        return Http::get($this->api_url . 'players/' . $player_id . '/recentMatches', $this->api_key);
     }
 
     /**
@@ -48,7 +49,7 @@ class LaravelOpendota
      */
     public function getPlayerMatches($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/matches', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/matches', array_merge($this->api_key, $params));
     }
 
     /**
@@ -58,7 +59,7 @@ class LaravelOpendota
      */
     public function getPlayerHeroes($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/heroes', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/heroes', array_merge($this->api_key, $params));
     }
 
     /**
@@ -68,7 +69,7 @@ class LaravelOpendota
      */
     public function getPlayerPeers($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/peers', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/peers', array_merge($this->api_key, $params));
     }
 
     /**
@@ -78,7 +79,7 @@ class LaravelOpendota
      */
     public function getPlayerPros($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/pros', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/pros', array_merge($this->api_key, $params));
     }
 
     /**
@@ -88,7 +89,7 @@ class LaravelOpendota
      */
     public function getPlayerTotals($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/totals', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/totals', array_merge($this->api_key, $params));
     }
 
     /**
@@ -98,7 +99,7 @@ class LaravelOpendota
      */
     public function getPlayerCounts($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/counts', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/counts', array_merge($this->api_key, $params));
     }
 
     /**
@@ -109,7 +110,7 @@ class LaravelOpendota
      */
     public function getPlayerHistograms($player_id, $field = "", $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/histograms/' . $field , $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/histograms/' . $field , array_merge($this->api_key, $params));
     }
 
     /**
@@ -119,7 +120,7 @@ class LaravelOpendota
      */
     public function getPlayerWardmap($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/wardmap', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/wardmap', array_merge($this->api_key, $params));
     }
 
     /**
@@ -129,7 +130,7 @@ class LaravelOpendota
      */
     public function getPlayerWordcloud($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/wordcloud', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/wordcloud', array_merge($this->api_key, $params));
     }
 
     /**
@@ -139,7 +140,7 @@ class LaravelOpendota
      */
     public function getPlayerRatings($player_id, $params = [])
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/ratings', $params);
+        return Http::get($this->api_url . 'players/' . $player_id . '/ratings', array_merge($this->api_key, $params));
     }
 
     /**
@@ -148,7 +149,7 @@ class LaravelOpendota
      */
     public function getPlayerRankings($player_id)
     {
-        return Http::get($this->api_url . 'players/' . $player_id . '/rankings');
+        return Http::get($this->api_url . 'players/' . $player_id . '/rankings', $this->api_key);
     }
 
     /**
@@ -157,7 +158,7 @@ class LaravelOpendota
      */
     public function postPlayerRefresh($player_id)
     {
-        return Http::post($this->api_url . 'players/' . $player_id . '/refresh');
+        return Http::post($this->api_url . 'players/' . $player_id . '/refresh', $this->api_key);
     }
 
     /**
@@ -166,7 +167,7 @@ class LaravelOpendota
      */
     public function getMatch($match_id)
     {
-        return Http::get($this->api_url . 'matches/' . $match_id);
+        return Http::get($this->api_url . 'matches/' . $match_id, $this->api_key);
     }
 
     /**
@@ -174,7 +175,7 @@ class LaravelOpendota
      */
     public function getPlayersByRank()
     {
-        return Http::get($this->api_url . 'playersByRank');
+        return Http::get($this->api_url . 'playersByRank', $this->api_key);
     }
 
     /**
@@ -182,7 +183,7 @@ class LaravelOpendota
      */
     public function getProPlayers()
     {
-        return Http::get($this->api_url . 'proPlayers');
+        return Http::get($this->api_url . 'proPlayers', $this->api_key);
     }
 
     /**
@@ -190,7 +191,7 @@ class LaravelOpendota
      */
     public function getProMatches()
     {
-        return Http::get($this->api_url . 'proMatches');
+        return Http::get($this->api_url . 'proMatches', $this->api_key);
     }
 
     /**
@@ -198,7 +199,7 @@ class LaravelOpendota
      */
     public function getPublicMatches()
     {
-        return Http::get($this->api_url . 'publicMatches');
+        return Http::get($this->api_url . 'publicMatches', $this->api_key);
     }
 
     /**
@@ -206,7 +207,7 @@ class LaravelOpendota
      */
     public function getParsedMatches()
     {
-        return Http::get($this->api_url . 'parsedMatches');
+        return Http::get($this->api_url . 'parsedMatches', $this->api_key);
     }
 
     /**
@@ -214,7 +215,7 @@ class LaravelOpendota
      */
     public function getMetadata()
     {
-        return Http::get($this->api_url . 'metadata');
+        return Http::get($this->api_url . 'metadata', $this->api_key);
     }
 
     /**
@@ -222,7 +223,7 @@ class LaravelOpendota
      */
     public function getDistributions()
     {
-        return Http::get($this->api_url . 'distributions');
+        return Http::get($this->api_url . 'distributions', $this->api_key);
     }
 
     /**
@@ -231,7 +232,7 @@ class LaravelOpendota
      */
     public function searchPlayers($personaname)
     {
-        return Http::get($this->api_url . 'search', ['q' => $personaname]);
+        return Http::get($this->api_url . 'search', array_merge($this->api_key, ['q' => $personaname]));
     }
 
     /**
@@ -240,7 +241,7 @@ class LaravelOpendota
      */
     public function getRankingsByHero($hero_id)
     {
-        return Http::get($this->api_url . 'rankings', ['hero_id' => $hero_id]);
+        return Http::get($this->api_url . 'rankings', array_merge($this->api_key, ['hero_id' => $hero_id]));
     }
 
     /**
@@ -249,7 +250,7 @@ class LaravelOpendota
      */
     public function getBenchmarks($hero_id)
     {
-        return Http::get($this->api_url . 'benchmarks', ['hero_id' => $hero_id]);
+        return Http::get($this->api_url . 'benchmarks', array_merge($this->api_key, ['hero_id' => $hero_id]));
     }
 
     /**
@@ -257,7 +258,7 @@ class LaravelOpendota
      */
     public function getStatus()
     {
-        return Http::get($this->api_url . 'status');
+        return Http::get($this->api_url . 'status', $this->api_key);
     }
 
     /**
@@ -265,7 +266,7 @@ class LaravelOpendota
      */
     public function getHealth()
     {
-        return Http::get($this->api_url . 'health');
+        return Http::get($this->api_url . 'health', $this->api_key);
     }
 
     /**
@@ -274,7 +275,7 @@ class LaravelOpendota
      */
     public function getRequest($job_id)
     {
-        return Http::get($this->api_url . 'request/' . $job_id);
+        return Http::get($this->api_url . 'request/' . $job_id, $this->api_key);
     }
 
     /**
@@ -283,7 +284,7 @@ class LaravelOpendota
      */
     public function postRequest($match_id)
     {
-        return Http::get($this->api_url . 'request/' . $match_id);
+        return Http::get($this->api_url . 'request/' . $match_id, $this->api_key);
     }
 
     /**
@@ -291,7 +292,7 @@ class LaravelOpendota
      */
     public function getHeroes()
     {
-        return Http::get($this->api_url . 'heroes');
+        return Http::get($this->api_url . 'heroes', $this->api_key);
     }
 
     /**
@@ -300,7 +301,7 @@ class LaravelOpendota
      */
     public function getHeroMatches($hero_id)
     {
-        return Http::get($this->api_url . 'heroes/' . $hero_id . '/matches');
+        return Http::get($this->api_url . 'heroes/' . $hero_id . '/matches', $this->api_key);
     }
 
     /**
@@ -309,7 +310,7 @@ class LaravelOpendota
      */
     public function getHeroMatchups($hero_id)
     {
-        return Http::get($this->api_url . 'heroes/' . $hero_id . '/matchups');
+        return Http::get($this->api_url . 'heroes/' . $hero_id . '/matchups', $this->api_key);
     }
 
     /**
@@ -318,7 +319,7 @@ class LaravelOpendota
      */
     public function getHeroDurations($hero_id)
     {
-        return Http::get($this->api_url . 'heroes/' . $hero_id . '/durations');
+        return Http::get($this->api_url . 'heroes/' . $hero_id . '/durations', $this->api_key);
     }
 
     /**
@@ -327,7 +328,7 @@ class LaravelOpendota
      */
     public function getHeroPlayers($hero_id)
     {
-        return Http::get($this->api_url . 'heroes/' . $hero_id . '/players');
+        return Http::get($this->api_url . 'heroes/' . $hero_id . '/players', $this->api_key);
     }
 
     /**
@@ -336,7 +337,7 @@ class LaravelOpendota
      */
     public function getHeroItemPopularity($hero_id)
     {
-        return Http::get($this->api_url . 'heroes/' . $hero_id . '/itemPopularity');
+        return Http::get($this->api_url . 'heroes/' . $hero_id . '/itemPopularity', $this->api_key);
     }
 
     /**
@@ -344,7 +345,7 @@ class LaravelOpendota
      */
     public function getHeroStats()
     {
-        return Http::get($this->api_url . 'heroStats');
+        return Http::get($this->api_url . 'heroStats', $this->api_key);
     }
 
     /**
@@ -352,7 +353,7 @@ class LaravelOpendota
      */
     public function getLeagues()
     {
-        return Http::get($this->api_url . 'leagues');
+        return Http::get($this->api_url . 'leagues', $this->api_key);
     }
 
     /**
@@ -360,7 +361,7 @@ class LaravelOpendota
      */
     public function getTeams()
     {
-        return Http::get($this->api_url . 'teams');
+        return Http::get($this->api_url . 'teams', $this->api_key);
     }
 
     /**
@@ -369,7 +370,7 @@ class LaravelOpendota
      */
     public function getTeam($team_id)
     {
-        return Http::get($this->api_url . 'teams/' . $team_id);
+        return Http::get($this->api_url . 'teams/' . $team_id, $this->api_key);
     }
 
     /**
@@ -378,7 +379,7 @@ class LaravelOpendota
      */
     public function getTeamMatches($team_id)
     {
-        return Http::get($this->api_url . 'teams/' . $team_id . '/matches');
+        return Http::get($this->api_url . 'teams/' . $team_id . '/matches', $this->api_key);
     }
 
     /**
@@ -387,7 +388,7 @@ class LaravelOpendota
      */
     public function getTeamsPlayer($team_id)
     {
-        return Http::get($this->api_url . 'teams/' . $team_id . '/players');
+        return Http::get($this->api_url . 'teams/' . $team_id . '/players', $this->api_key);
     }
 
     /**
@@ -396,7 +397,7 @@ class LaravelOpendota
      */
     public function getTeamsHeroes($team_id)
     {
-        return Http::get($this->api_url . 'teams/' . $team_id . '/heroes');
+        return Http::get($this->api_url . 'teams/' . $team_id . '/heroes', $this->api_key);
     }
 
     /**
@@ -405,7 +406,7 @@ class LaravelOpendota
      */
     public function getReplays($match_id)
     {
-        return Http::get($this->api_url . 'replays', ['match_id' => $match_id]);
+        return Http::get($this->api_url . 'replays', array_merge($this->api_key, ['match_id' => $match_id]));
     }
 
     /**
@@ -414,7 +415,7 @@ class LaravelOpendota
      */
     public function getRecords($field)
     {
-        return Http::get($this->api_url . 'records/' . $field);
+        return Http::get($this->api_url . 'records/' . $field, $this->api_key);
     }
 
     /**
@@ -422,7 +423,7 @@ class LaravelOpendota
      */
     public function getLive()
     {
-        return Http::get($this->api_url . 'live');
+        return Http::get($this->api_url . 'live', $this->api_key);
     }
 
     /**
@@ -431,7 +432,7 @@ class LaravelOpendota
      */
     public function getScenariosItemTimings($params = [])
     {
-        return Http::get($this->api_url . 'scenarios/itemTimings' , $params);
+        return Http::get($this->api_url . 'scenarios/itemTimings' , array_merge($this->api_key, $params));
     }
 
     /**
@@ -440,7 +441,7 @@ class LaravelOpendota
      */
     public function getScenariosLaneRoles($params = [])
     {
-        return Http::get($this->api_url . 'scenarios/laneRoles' , $params);
+        return Http::get($this->api_url . 'scenarios/laneRoles' , array_merge($this->api_key, $params));
     }
 
     /**
@@ -449,7 +450,7 @@ class LaravelOpendota
      */
     public function getScenariosMisc($params = [])
     {
-        return Http::get($this->api_url . 'scenarios/misc' , $params);
+        return Http::get($this->api_url . 'scenarios/misc' , array_merge($this->api_key, $params));
     }
 
     /**
@@ -457,7 +458,7 @@ class LaravelOpendota
      */
     public function getSchema()
     {
-        return Http::get($this->api_url . 'schema');
+        return Http::get($this->api_url . 'schema', $this->api_key);
     }
 
     /**
@@ -466,7 +467,7 @@ class LaravelOpendota
      */
     public function getConstants($resource = '')
     {
-        return Http::get($this->api_url . 'constants', ['resource' => $resource]);
+        return Http::get($this->api_url . 'constants', array_merge($this->api_key, ['resource' => $resource]));
     }
 
 }
