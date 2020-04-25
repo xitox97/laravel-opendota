@@ -42,12 +42,12 @@ class ExampleTest extends TestCase
     //     $this->assertSame(113429216, $player);
     // }
 
-    public function test_get_players_by_rank_function()
-    {
-        $openDota = new LaravelOpendota();
+    // public function test_get_players_by_rank_function()
+    // {
+    //     $openDota = new LaravelOpendota();
 
-        $players = $openDota->getLive();
+    //     $players = $openDota->getLive();
 
-        dd($players->json());
-    }
+    //     dd($players->json());
+    // }
 }

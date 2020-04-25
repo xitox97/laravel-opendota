@@ -15,6 +15,7 @@ class LaravelOpendota
 
     /**
      * Get player details based on player dota 2 ID
+     * @param int $player_id {account_id}
      */
     public function getPlayer($player_id)
     {
@@ -23,6 +24,8 @@ class LaravelOpendota
 
     /**
      * Get player Win/Loss count
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerWL($player_id, $params = [])
     {
@@ -31,6 +34,7 @@ class LaravelOpendota
 
     /**
      * Get player Recent matches played
+     * @param int $player_id {account_id}
      */
     public function getPlayerRecentMatches($player_id)
     {
@@ -39,6 +43,8 @@ class LaravelOpendota
 
     /**
      * Get player Matches played
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerMatches($player_id, $params = [])
     {
@@ -47,6 +53,8 @@ class LaravelOpendota
 
     /**
      * Get player Heroes played
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerHeroes($player_id, $params = [])
     {
@@ -55,6 +63,8 @@ class LaravelOpendota
 
     /**
      * Get Players played with
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerPeers($player_id, $params = [])
     {
@@ -63,6 +73,8 @@ class LaravelOpendota
 
     /**
      * Get Pro players played with the player
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerPros($player_id, $params = [])
     {
@@ -71,6 +83,8 @@ class LaravelOpendota
 
     /**
      * Get player's Totals in stats
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerTotals($player_id, $params = [])
     {
@@ -79,6 +93,8 @@ class LaravelOpendota
 
     /**
      * Get player's Counts in categories
+     * @param int $player_id {account_id}
+     * @param mixed $params = [] Assoc array of parameters applied (see OpenDota docs for reference)
      */
     public function getPlayerCounts($player_id, $params = [])
     {
@@ -146,6 +162,7 @@ class LaravelOpendota
 
     /**
      * Get match details based on match ID
+     * @param string $match_id {match_id}
      */
     public function getMatch($match_id)
     {
@@ -210,6 +227,7 @@ class LaravelOpendota
 
     /**
      * Search players by personaname.
+     * @param string $personaname
      */
     public function searchPlayers($personaname)
     {
@@ -218,6 +236,7 @@ class LaravelOpendota
 
     /**
      * Get Top players by hero
+     * @param int $hero_id
      */
     public function getRankingsByHero($hero_id)
     {
@@ -226,6 +245,7 @@ class LaravelOpendota
 
     /**
      * Get Benchmarks of average stat values for a hero
+     * @param int $hero_id
      */
     public function getBenchmarks($hero_id)
     {
@@ -276,6 +296,7 @@ class LaravelOpendota
 
     /**
      * Get recent matches with a hero
+     * @param int $hero_id
      */
     public function getHeroMatches($hero_id)
     {
@@ -284,6 +305,7 @@ class LaravelOpendota
 
     /**
      * Get results against other heroes for a hero
+     * @param int $hero_id
      */
     public function getHeroMatchups($hero_id)
     {
@@ -292,6 +314,7 @@ class LaravelOpendota
 
     /**
      * Get hero performance over a range of match durations
+     * @param int $hero_id
      */
     public function getHeroDurations($hero_id)
     {
@@ -300,6 +323,7 @@ class LaravelOpendota
 
     /**
      * Get players who have played this hero
+     * @param int $hero_id
      */
     public function getHeroPlayers($hero_id)
     {
@@ -308,6 +332,7 @@ class LaravelOpendota
 
     /**
      * Get item popularity of hero categoried by start, early, mid and late game, analyzed from professional games
+     * @param int $hero_id
      */
     public function getHeroItemPopularity($hero_id)
     {
@@ -340,6 +365,7 @@ class LaravelOpendota
 
     /**
      * Get data for a team
+     * @param int $team_id {team_id}
      */
     public function getTeam($team_id)
     {
@@ -348,6 +374,7 @@ class LaravelOpendota
 
     /**
      * Get matches for a team
+     * @param int $team_id {team_id}
      */
     public function getTeamMatches($team_id)
     {
@@ -356,6 +383,7 @@ class LaravelOpendota
 
     /**
      * Get players who have played for a team
+     * @param int $team_id {team_id}
      */
     public function getTeamsPlayer($team_id)
     {
@@ -364,6 +392,7 @@ class LaravelOpendota
 
     /**
      * Get heroes for a team
+     * @param int $team_id {team_id}
      */
     public function getTeamsHeroes($team_id)
     {
@@ -372,10 +401,20 @@ class LaravelOpendota
 
     /**
      * Get data to construct a replay URL with
+     * @param string $match_id {match_id}
      */
     public function getReplays($match_id)
     {
         return Http::get($this->api_url . 'replays', ['match_id' => $match_id]);
+    }
+
+    /**
+     * Get top performances in a stat
+     * @param string $field {match_id} Field name to query
+     */
+    public function getRecords($field)
+    {
+        return Http::get($this->api_url . 'records/' . $field);
     }
 
     /**
@@ -384,6 +423,50 @@ class LaravelOpendota
     public function getLive()
     {
         return Http::get($this->api_url . 'live');
+    }
+
+    /**
+     * Get Win rates for certain item timings on a hero for items that cost at least 1400 gold
+     * @param mixed $params = [] Assoc array of parameters applied to filter matches (see OpenDota docs for reference)
+     */
+    public function getScenariosItemTimings($params = [])
+    {
+        return Http::get($this->api_url . 'scenarios/itemTimings' , $params);
+    }
+
+    /**
+     * Win rates for heroes in certain lane roles
+     * @param mixed $params = [] Assoc array of parameters applied to filter matches (see OpenDota docs for reference)
+     */
+    public function getScenariosLaneRoles($params = [])
+    {
+        return Http::get($this->api_url . 'scenarios/laneRoles' , $params);
+    }
+
+    /**
+     * Win rates for heroes in certain lane roles
+     * @param mixed $params = [] Assoc array of parameters applied to filter matches (see OpenDota docs for reference)
+     */
+    public function getScenariosMisc($params = [])
+    {
+        return Http::get($this->api_url . 'scenarios/misc' , $params);
+    }
+
+    /**
+     * Get database schema
+     */
+    public function getSchema()
+    {
+        return Http::get($this->api_url . 'schema');
+    }
+
+    /**
+     * Get static game data mirrored from the dotaconstants repository. If no resource is specified, returns an array of available resources.
+     * Resources: https://github.com/odota/dotaconstants/tree/master/build
+     */
+    public function getConstants($resource = '')
+    {
+        return Http::get($this->api_url . 'constants', ['resource' => $resource]);
     }
 
 }
