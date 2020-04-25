@@ -5,7 +5,11 @@
 
 Unofficial Laravel 7 PHP Facade/Wrapper for the OpenDota API
 
-`(This package is still under development)`
+## Support
+  - Laravel 7+
+  - OpenDota API (v18.0.0)
+> All API endpoint supported except explorer and FindMatches
+
 
 ## Installation
 
@@ -15,15 +19,30 @@ You can install the package via composer:
 composer require xitox97/laravel-opendota
 ```
 
-## Usage
-Every function are return an instance of `Illuminate\Http\Client\Response`, Therefore you can use variety of method provided by [Laravel HTTP Client](https://laravel.com/docs/master/http-client)
+## API KEY Set up (Optional)
 
-### Get player info
+Publish Laravel Opendota config by run below command, and replace the null value with your api-key.
+
+```bash
+php artisan vendor:publish --provider Xitox97\LaravelOpendota\LaravelOpendotaServiceProvider --tag="config"
+```
+
+
+## Usage
+Every function are return an instance of `Illuminate\Http\Client\Response`, Therefore you can use variety of method provided by [Laravel HTTP Client](https://laravel.com/docs/master/http-client). Check more function in [LaravelOpenDota](https://github.com/xitox97/laravel-opendota/blob/master/src/LaravelOpendota.php)
+
+### Get player info without Parameter
 ``` php
 $player = Opendota::getPlayer($player_id);
 $player->json();
 $player->body();
 etc...
+```
+
+### Get player win lose with Parameter
+> Refer [OpenDota](https://docs.opendota.com) Documentation to know more about exact parameter supported for each endpoint
+``` php
+$playerWinLose = Opendota::getPlayerWL(311360822,['limit' => 1000])->json();
 ```
 
 ### Get match details
@@ -50,18 +69,15 @@ $player = Opendota::proMatches();
 ``` php
 $player = Opendota::publicMatches();
 ```
-
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
+> To view more function just open the [LaravelOpenDota](https://github.com/xitox97/laravel-opendota/blob/master/src/LaravelOpendota.php) file. The function name is similar to OpenDota endpoint.
 
 ## Credits
 
 - [Muhammad Farhan Abdul Hadi](https://github.com/xitox97)
-- [All Contributors](../../contributors)
 
 ## License
+Copyright © 2020 Farhan Hadi (farhan.abdhadi@gmail.com)
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
