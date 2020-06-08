@@ -3,7 +3,11 @@
     "description": "Laravel PHP Facade/Wrapper for the OpenDota API",
     "keywords": [
         "xitox97",
-        "laravel-opendota"
+        "laravel-opendota",
+        "laravel",
+        "Opendota",
+        "API",
+        "Wrapper"
     ],
     "homepage": "https://github.com/xitox97/laravel-opendota",
     "license": "MIT",
